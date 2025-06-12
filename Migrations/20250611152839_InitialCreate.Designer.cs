@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CrudVeiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250605002555_InitialCreate")]
+    [Migration("20250611152839_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -80,6 +80,39 @@ namespace CrudVeiculos.Migrations
                     b.HasIndex("ServidorId");
 
                     b.ToTable("CorpoDocente");
+                });
+
+            modelBuilder.Entity("CrudVeiculos.Entities.Disciplina", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Conteudo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Objetivos")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Disciplina");
                 });
 
             modelBuilder.Entity("CrudVeiculos.Entities.Servidor", b =>

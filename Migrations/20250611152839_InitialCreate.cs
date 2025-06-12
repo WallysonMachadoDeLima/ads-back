@@ -29,6 +29,23 @@ namespace CrudVeiculos.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Disciplina",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nome = table.Column<string>(type: "text", nullable: false),
+                    Codigo = table.Column<string>(type: "text", nullable: false),
+                    Descricao = table.Column<string>(type: "text", nullable: false),
+                    Objetivos = table.Column<string>(type: "text", nullable: false),
+                    Conteudo = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Disciplina", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Servidor",
                 columns: table => new
                 {
@@ -79,6 +96,9 @@ namespace CrudVeiculos.Migrations
 
             migrationBuilder.DropTable(
                 name: "CorpoDocente");
+
+            migrationBuilder.DropTable(
+                name: "Disciplina");
 
             migrationBuilder.DropTable(
                 name: "Servidor");

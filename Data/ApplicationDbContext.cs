@@ -18,6 +18,7 @@ namespace CrudVeiculos.Data
         public DbSet<Servidor> Servidor { get; set; }
         public DbSet<CorpoDocente> CorpoDocente { get; set; }
         public DbSet<Aluno> Aluno { get; set; }
+        public DbSet<Disciplina> Disciplina { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
