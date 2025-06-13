@@ -11,7 +11,7 @@ migrations:
 	dotnet ef migrations add $(name)
 
 
-migration-build:
+migrations-build:
 	dotnet ef database update
 
 drop-database:

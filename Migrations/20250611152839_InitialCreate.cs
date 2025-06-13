@@ -11,6 +11,7 @@ namespace CrudVeiculos.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
             migrationBuilder.CreateTable(
                 name: "Aluno",
                 columns: table => new
