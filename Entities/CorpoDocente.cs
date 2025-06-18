@@ -6,13 +6,17 @@ namespace CrudVeiculos.Entities
   [Table("CorpoDocente")]
   public class CorpoDocente
   {
-    [Key] public int Id { get; set; }
+    [Key]
+    public int Id { get; set; }
 
-    public required string Disciplina { get; set; }
+    public int DisciplinaId { get; set; }
 
-    [ForeignKey(nameof(Servidor))]
+    [ForeignKey(nameof(DisciplinaId))]
+    public virtual Disciplina Disciplina { get; set; }
+
     public int ServidorId { get; set; }
 
-    public virtual Servidor? Servidor { get; set; }
+    [ForeignKey(nameof(ServidorId))]
+    public virtual Servidor Servidor { get; set; }
   }
 }

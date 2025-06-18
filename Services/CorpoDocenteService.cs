@@ -14,6 +14,19 @@ namespace CrudVeiculos.Services
             _context = context;
         }
 
+        public async Task<CorpoDocente> Create(CorpoDocenteCreateDTO dto)
+        {
+            var corpo = new CorpoDocente
+            {
+                ServidorId = dto.ServidorId,
+                DisciplinaId = dto.DisciplinaId
+            };
+
+            _context.CorpoDocente.Add(corpo);
+            await _context.SaveChangesAsync();
+            return corpo;
+        }
+
         public async Task<List<CorpoDocente>> GetAll()
         {
             return await _context.CorpoDocente.ToListAsync();
@@ -22,19 +35,6 @@ namespace CrudVeiculos.Services
         public async Task<CorpoDocente?> GetById(int id)
         {
             return await _context.CorpoDocente.FindAsync(id);
-        }
-
-        public async Task<CorpoDocente> Create(CorpoDocenteCreateDTO dto)
-        {
-            var corpo = new CorpoDocente
-            {
-                ServidorId = dto.ServidorId,
-                Disciplina = dto.Disciplina
-            };
-
-            _context.CorpoDocente.Add(corpo);
-            await _context.SaveChangesAsync();
-            return corpo;
         }
 
         public async Task<bool> Delete(int id)
