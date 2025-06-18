@@ -1,6 +1,7 @@
 .PHONY: restore build run watch test clean publish \
         tool-manifest install-ef user-secrets-init ef-update \
-        format lint
+        format lint migrations
+
 
 ## Básico -----------------------------------------------------------
 
