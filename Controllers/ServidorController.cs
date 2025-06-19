@@ -20,7 +20,7 @@ namespace CrudVeiculos.Controllers
         public async Task<ActionResult<Servidor>> Add([FromBody] ServidorCreateDTO dto)
         {
             var servidor = await _servidorService.Create(dto);
-            return CreatedAtAction(nameof(GetById), new { id = servidor.IdServidor }, servidor);
+            return CreatedAtAction(nameof(GetById), new { id = servidor.Id }, servidor);
         }
 
         [HttpGet]

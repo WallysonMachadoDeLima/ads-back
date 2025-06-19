@@ -9,7 +9,7 @@ namespace CrudVeiculos.Entities
     public class Servidor
     {
         [Key]
-        public int IdServidor { get; set; }
+        public int Id { get; set; }
 
         public required string Nome { get; set; }
 

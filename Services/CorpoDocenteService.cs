@@ -37,6 +37,20 @@ namespace CrudVeiculos.Services
             return await _context.CorpoDocente.FindAsync(id);
         }
 
+        public async Task<bool> Update(int id, CorpoDocenteCreateDTO dto)
+        {
+            var corpo = await _context.CorpoDocente.FindAsync(id);
+            if (corpo == null) return false;
+
+            corpo.ServidorId = dto.ServidorId;
+            corpo.DisciplinaId = dto.DisciplinaId;
+
+            _context.CorpoDocente.Update(corpo);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
         public async Task<bool> Delete(int id)
         {
             var corpo = await _context.CorpoDocente.FindAsync(id);

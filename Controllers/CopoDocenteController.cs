@@ -38,6 +38,16 @@ namespace CrudVeiculos.Controllers
             return Ok(corpo);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] CorpoDocenteUpdateDTO dto)
+        {
+            var result = await _corpoDoscenteService.Update(id, dto);
+            if (!result) return NotFound();
+
+            return NoContent();
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

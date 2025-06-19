@@ -4,8 +4,6 @@ namespace CrudVeiculos.DTOs
 {
     public class AlunoCreateDTO
     {
-        public int IdAluno { get; set; }
-
         [Required(ErrorMessage = "Nome é obrigatório")]
         public required string Nome { get; set; }
 

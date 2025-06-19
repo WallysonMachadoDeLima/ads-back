@@ -19,14 +19,41 @@ namespace CrudVeiculos.Data
         public DbSet<CorpoDocente> CorpoDocente { get; set; }
         public DbSet<Aluno> Aluno { get; set; }
         public DbSet<Disciplina> Disciplina { get; set; }
+        public DbSet<Tcc> Tcc { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CorpoDocente>()
                 .HasOne(cd => cd.Servidor)
-                .WithMany()
-                .HasForeignKey(cd => cd.ServidorId)
+                .WithOne()
+                .HasForeignKey<CorpoDocente>(cd => cd.ServidorId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CorpoDocente>()
+           .HasOne(cd => cd.Disciplina)
+           .WithMany()
+           .HasForeignKey(cd => cd.DisciplinaId)
+           .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Tcc>()
+                .HasOne(t => t.Aluno)
+                .WithMany()
+                .HasForeignKey(t => t.AlunoId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Tcc>()
+                .HasOne(t => t.Orientador)
+                .WithMany()
+                .HasForeignKey(t => t.OrientadorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Tcc>()
+                .HasOne(t => t.Coorientador)
+                .WithMany()
+                .HasForeignKey(t => t.CoorientadorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }
