@@ -12,6 +12,7 @@ namespace CrudVeiculos.Extensions
             services.AddScoped<AlunoService>();
             services.AddScoped<DisciplinaService>();
             services.AddScoped<TccService>();
+            services.AddScoped<DocumentoService>();
 
             return services;
         }
