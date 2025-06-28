@@ -23,14 +23,23 @@ builder.Services.AddCors(options =>
 });
 
 // 2) Minio
-builder.Services.AddSingleton(_ =>
-    new MinioClient()
-      .WithEndpoint(endpoint)
-      .WithCredentials(accessKey, secretKey)
-      .WithSSL(useSSL)
-      .Build()
-);
+builder.Services.Configure<MinioSettings>(
+    builder.Configuration.GetSection("Minio"));
 
+builder.Services.AddSingleton<MinioClient>(sp =>
+{
+    var settings = sp.GetRequiredService<IOptions<MinioSettings>>().Value;
+    return new MinioClient()
+                  .WithEndpoint(settings.Endpoint)
+                  .WithCredentials(settings.AccessKey, settings.SecretKey)
+                  .WithSSL(settings.UseSSL)
+                  .Build();
+});
+builder.Services
+    .AddScoped<IFileStorageService, MinioFileStorageService>();
+
+
+// 3) Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
