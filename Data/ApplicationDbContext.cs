@@ -20,7 +20,8 @@ namespace CrudVeiculos.Data
         public DbSet<Aluno> Aluno { get; set; }
         public DbSet<Disciplina> Disciplina { get; set; }
         public DbSet<Tcc> Tcc { get; set; }
-        public DbSet<Documento> Documentos { get; set; }
+        public DbSet<Documento> Documento { get; set; }
+        public DbSet<MatrizCurricular> MatrizCurricular { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,10 +33,10 @@ namespace CrudVeiculos.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<CorpoDocente>()
-                .HasOne(cd => cd.Disciplina)
-                .WithMany()
-                .HasForeignKey(cd => cd.DisciplinaId)
-                .OnDelete(DeleteBehavior.Restrict);
+           .HasOne(cd => cd.Disciplina)
+           .WithMany()
+           .HasForeignKey(cd => cd.DisciplinaId)
+           .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Tcc>()
                 .HasOne(t => t.Aluno)

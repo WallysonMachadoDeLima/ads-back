@@ -2,16 +2,10 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using CrudVeiculos.Enums;
 
 namespace CrudVeiculos.Entities
 {
-  public enum TccStatus
-  {
-    Rascunho,
-    Submetido,
-    Aprovado,
-    Reprovado
-  }
 
   [Table("Tcc")]
   public class Tcc
@@ -51,7 +45,7 @@ namespace CrudVeiculos.Entities
     [DataType(DataType.Date)]
     public required DateTime DataPrevistaDefesa { get; set; }
 
-    public TccStatus Status { get; set; } = TccStatus.Rascunho;
+    public TccStatus Status { get; set; }
 
     [DataType(DataType.Date)]
     public required DateTime DataSubmissao { get; set; }

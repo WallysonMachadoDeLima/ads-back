@@ -1,14 +1,9 @@
 using CrudVeiculos.Data;
-using CrudVeiculos.Extensions;
+using CrudVeiculos.Extensions;   // ← importa o AddApplicationServices()
 using Microsoft.EntityFrameworkCore;
-using Minio;
+using CrudVeiculos.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-var minioConfig = builder.Configuration.GetSection("Minio");
-string endpoint = minioConfig["Endpoint"];
-bool useSSL = bool.Parse(minioConfig["UseSSL"]);
-string accessKey = minioConfig["AccessKey"];
-string secretKey = minioConfig["SecretKey"];
 
 // 1) CORS
 builder.Services.AddCors(options =>
@@ -22,24 +17,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-// 2) Minio
-builder.Services.Configure<MinioSettings>(
-    builder.Configuration.GetSection("Minio"));
-
-builder.Services.AddSingleton<MinioClient>(sp =>
-{
-    var settings = sp.GetRequiredService<IOptions<MinioSettings>>().Value;
-    return new MinioClient()
-                  .WithEndpoint(settings.Endpoint)
-                  .WithCredentials(settings.AccessKey, settings.SecretKey)
-                  .WithSSL(settings.UseSSL)
-                  .Build();
-});
-builder.Services
-    .AddScoped<IFileStorageService, MinioFileStorageService>();
-
-
-// 3) Swagger
+builder.Services.AddSingleton<IEnumService, EnumService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();

@@ -28,6 +28,7 @@ namespace CrudVeiculos.Services
                 Periodo = dto.Periodo,
 
                 DataPrevistaDefesa = DateTime.SpecifyKind(dto.DataPrevistaDefesa, DateTimeKind.Utc),
+                Status = dto.Status,
                 DataSubmissao = DateTime.UtcNow,
 
                 DataAprovacao = null,

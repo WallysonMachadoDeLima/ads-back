@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using CrudVeiculos.Enums;
 
 namespace CrudVeiculos.DTOs
 {
@@ -35,6 +36,10 @@ namespace CrudVeiculos.DTOs
         [Required(ErrorMessage = "Data prevista da defesa é obrigatória")]
         [DataType(DataType.Date)]
         public DateTime DataPrevistaDefesa { get; set; }
+
+        [Required(ErrorMessage = "Status é obrigatória")]
+        public TccStatus Status { get; set; }
+
 
         public string? Observacoes { get; set; }
     }

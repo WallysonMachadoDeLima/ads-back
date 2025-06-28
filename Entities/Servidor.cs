@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using CrudVeiculos.Enums;
 
 namespace CrudVeiculos.Entities
 {
@@ -19,7 +20,7 @@ namespace CrudVeiculos.Entities
 
         public required string Senha { get; set; }
 
-        public required string Tipo { get; set; }
+        public required ServidorTipo Tipo { get; set; }
 
     }
 }

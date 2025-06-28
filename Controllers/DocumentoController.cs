@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using CrudVeiculos.DTOs;
 using CrudVeiculos.Entities;
 using CrudVeiculos.Services;
@@ -28,8 +26,7 @@ namespace CrudVeiculos.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Documento>>> GetAll()
         {
-            var list = await _documentoService.GetAll();
-            return Ok(list);
+            return Ok(await _documentoService.GetAll());
         }
 
         [HttpGet("{id}")]
@@ -41,20 +38,18 @@ namespace CrudVeiculos.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Documento>> Update(int id, [FromForm] DocumentoUpdateDTO dto)
+        public async Task<IActionResult> Update(int id, [FromBody] DocumentoUpdateDTO dto)
         {
             var updated = await _documentoService.Update(id, dto);
-            if (!updated) return NotFound();
-
-            var documento = await _documentoService.GetById(id);
-            return Ok(documento);
+            if (updated == null) return NotFound();
+            return Ok(updated);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _documentoService.Delete(id);
-            if (!result) return NotFound();
+            var success = await _documentoService.Delete(id);
+            if (!success) return NotFound();
             return NoContent();
         }
     }

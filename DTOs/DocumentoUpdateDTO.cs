@@ -4,15 +4,13 @@ namespace CrudVeiculos.DTOs
 {
     public class DocumentoUpdateDTO
     {
-        [Required(ErrorMessage = "Apelido é obrigatório")]
-        public string Apelido { get; set; }
-
         [Required(ErrorMessage = "Nome é obrigatório")]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage = "Arquivo é obrigatório")]
-        public IFormFile File { get; set; }
+        [Required(ErrorMessage = "Descrição é obrigatória")]
+        public string Descricao { get; set; }
 
-
+        [Required(ErrorMessage = "URL é obrigatória")]
+        public string Url { get; set; }
     }
 }

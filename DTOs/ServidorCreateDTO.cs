@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using CrudVeiculos.Enums;
 
 namespace CrudVeiculos.DTOs
 {
@@ -20,6 +21,6 @@ namespace CrudVeiculos.DTOs
         public required string Senha { get; set; }
 
         [Required(ErrorMessage = "Tipo é obrigatório")]
-        public required string Tipo { get; set; }
+        public required ServidorTipo Tipo { get; set; }
     }
 }
