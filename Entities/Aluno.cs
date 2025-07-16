@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace CrudVeiculos.Entities
+namespace Ads.Entities
 {
     [Table("Aluno")]
     public class Aluno

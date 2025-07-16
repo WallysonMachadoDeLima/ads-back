@@ -1,12 +1,16 @@
-using CrudVeiculos.DTOs;
-using CrudVeiculos.Entities;
-using CrudVeiculos.Services;
+// AlunoController.cs
+using Ads.DTOs;
+using Ads.Entities;
+using Ads.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace CrudVeiculos.Controllers
+namespace Ads.Controllers
 {
     [ApiController]
-    [Route("aluno")]
+    [Route("api/aluno")]
     public class AlunoController : ControllerBase
     {
         private readonly AlunoService _alunoService;
@@ -19,8 +23,15 @@ namespace CrudVeiculos.Controllers
         [HttpPost]
         public async Task<ActionResult<Aluno>> Add([FromBody] AlunoCreateDTO dto)
         {
-            var aluno = await _alunoService.Create(dto);
-            return CreatedAtAction(nameof(GetById), new { id = aluno.Id }, aluno);
+            try
+            {
+                var aluno = await _alunoService.Create(dto);
+                return CreatedAtAction(nameof(GetById), new { id = aluno.Id }, aluno);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpGet]
@@ -34,17 +45,22 @@ namespace CrudVeiculos.Controllers
         {
             var aluno = await _alunoService.GetById(id);
             if (aluno == null) return NotFound();
-
             return Ok(aluno);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] AlunoUpdateDTO dto)
         {
-            var updated = await _alunoService.Update(id, dto);
-            if (updated == null) return NotFound();
-
-            return Ok(updated);
+            try
+            {
+                var updated = await _alunoService.Update(id, dto);
+                if (updated == null) return NotFound();
+                return Ok(updated);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
@@ -52,7 +68,6 @@ namespace CrudVeiculos.Controllers
         {
             var result = await _alunoService.Delete(id);
             if (!result) return NotFound();
-
             return NoContent();
         }
     }
