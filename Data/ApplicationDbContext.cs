@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using CrudVeiculos.Entities;
+using Ads.Entities;
 
-namespace CrudVeiculos.Data
+namespace Ads.Data
 {
     public class ApplicationDbContext : DbContext
     {

@@ -1,7 +1,7 @@
-using CrudVeiculos.Services;
+using Ads.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CrudVeiculos.Controllers
+namespace Ads.Controllers
 {
     [ApiController]
     [Route("enums")]

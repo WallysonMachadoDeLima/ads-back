@@ -1,7 +1,7 @@
-using CrudVeiculos.Data;
-using CrudVeiculos.Extensions;   // ← importa o AddApplicationServices()
+using Ads.Data;
+using Ads.Extensions;   // ← importa o AddApplicationServices()
 using Microsoft.EntityFrameworkCore;
-using CrudVeiculos.Services;
+using Ads.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,7 +46,7 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    context.Database.EnsureDeleted();
+    //context.Database.EnsureDeleted();
     context.Database.Migrate();
 }
 

@@ -4,11 +4,11 @@ WORKDIR /app
 
 # Copia os arquivos .csproj e restaura as dependências
 COPY *.csproj ./
-RUN dotnet restore ./crudVeiculos.csproj
+RUN dotnet restore ./ads.csproj
 
 # Copia o restante do código e realiza o build
 COPY . ./
-RUN dotnet publish ./crudVeiculos.csproj -c Release -o out
+RUN dotnet publish ./ads.csproj -c Release -o out
 
 # Etapa final - cria a imagem de runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
@@ -19,4 +19,4 @@ COPY --from=build-env /app/out .
 EXPOSE 5000
 
 # Define o comando de entrada para a execução do container
-ENTRYPOINT ["dotnet", "crudVeiculos.dll"]
+ENTRYPOINT ["dotnet", "ads.dll"]

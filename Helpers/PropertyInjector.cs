@@ -1,4 +1,4 @@
-namespace CrudVeiculos.Helpers
+namespace Ads.Helpers
 {
     public static class PropertyInjector
     {

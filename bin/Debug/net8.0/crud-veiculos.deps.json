@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "crudVeiculos/1.0.0": {
+      "ads/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "8.0.0",
           "Microsoft.EntityFrameworkCore.Design": "8.0.8",
@@ -15,7 +15,7 @@
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {
-          "crudVeiculos.dll": {}
+          "ads.dll": {}
         }
       },
       "Humanizer.Core/2.14.1": {
@@ -561,7 +561,7 @@
     }
   },
   "libraries": {
-    "crudVeiculos/1.0.0": {
+    "ads/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

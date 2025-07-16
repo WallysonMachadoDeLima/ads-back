@@ -1,4 +1,4 @@
-namespace CrudVeiculos.Enums
+namespace Ads.Enums
 {
     public enum ServidorTipo
     {

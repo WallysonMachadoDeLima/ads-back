@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <RootNamespace>CrudVeiculos</RootNamespace>
+    <RootNamespace>Ads</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

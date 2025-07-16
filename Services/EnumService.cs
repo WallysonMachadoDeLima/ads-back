@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 
-namespace CrudVeiculos.Services
+namespace Ads.Services
 {
     public interface IEnumService
     {

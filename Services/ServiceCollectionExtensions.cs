@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
-using CrudVeiculos.Services;
+using Ads.Services;
 
-namespace CrudVeiculos.Extensions
+namespace Ads.Extensions
 {
     public static class ServiceCollectionExtensions
     {
