@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace CrudVeiculos.Entities
+namespace Ads.Entities
 {
     [Table("Disciplina")]
     public class Disciplina

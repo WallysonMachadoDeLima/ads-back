@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CrudVeiculos.DTOs
+namespace Ads.DTOs
 {
     public class DisciplinaCreateDTO
     {

@@ -1,9 +1,9 @@
-using CrudVeiculos.DTOs;
-using CrudVeiculos.Entities;
-using CrudVeiculos.Data;
+using Ads.DTOs;
+using Ads.Entities;
+using Ads.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace CrudVeiculos.Services
+namespace Ads.Services
 {
 
     public class DisciplinaService
