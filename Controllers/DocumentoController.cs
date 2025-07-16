@@ -1,9 +1,9 @@
-using CrudVeiculos.DTOs;
-using CrudVeiculos.Entities;
-using CrudVeiculos.Services;
+using Ads.DTOs;
+using Ads.Entities;
+using Ads.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CrudVeiculos.Controllers
+namespace Ads.Controllers
 {
     [ApiController]
     [Route("documento")]

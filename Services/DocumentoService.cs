@@ -1,9 +1,9 @@
-using CrudVeiculos.Data;
-using CrudVeiculos.DTOs;
-using CrudVeiculos.Entities;
+using Ads.Data;
+using Ads.DTOs;
+using Ads.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CrudVeiculos.Services
+namespace Ads.Services
 {
     public class DocumentoService
     {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
-namespace CrudVeiculos.DTOs
+namespace Ads.DTOs
 {
     public class DocumentoCreateDTO
     {
