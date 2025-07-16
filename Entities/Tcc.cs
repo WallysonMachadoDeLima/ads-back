@@ -2,9 +2,9 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using CrudVeiculos.Enums;
+using Ads.Enums;
 
-namespace CrudVeiculos.Entities
+namespace Ads.Entities
 {
 
   [Table("Tcc")]

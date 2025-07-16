@@ -1,21 +1,49 @@
-using CrudVeiculos.Data;
-using CrudVeiculos.DTOs;
-using CrudVeiculos.Entities;
+// TccService.cs
+using Ads.Data;
+using Ads.DTOs;
+using Ads.Entities;
+using Ads.Services;       // para AlunoService e ServidorService
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace CrudVeiculos.Services
+namespace Ads.Services
 {
     public class TccService
     {
         private readonly ApplicationDbContext _context;
+        private readonly AlunoService _alunoService;
+        private readonly ServidorService _servidorService;
 
-        public TccService(ApplicationDbContext context)
+        public TccService(
+            ApplicationDbContext context,
+            AlunoService alunoService,
+            ServidorService servidorService
+        )
         {
             _context = context;
+            _alunoService = alunoService;
+            _servidorService = servidorService;
         }
 
         public async Task<Tcc> Create(TccCreateDTO dto)
         {
+            // valida existência de aluno
+            if (await _alunoService.GetById(dto.AlunoId) == null)
+                throw new InvalidOperationException($"Aluno {dto.AlunoId} não encontrado.");
+
+            // valida existência de orientador
+            if (await _servidorService.GetById(dto.OrientadorId) == null)
+                throw new InvalidOperationException($"Orientador {dto.OrientadorId} não encontrado.");
+
+            // valida existência de coorientador (se informado)
+            if (dto.CoorientadorId.HasValue
+                && await _servidorService.GetById(dto.CoorientadorId.Value) == null)
+            {
+                throw new InvalidOperationException($"Coorientador {dto.CoorientadorId} não encontrado.");
+            }
+
             var tcc = new Tcc
             {
                 AlunoId = dto.AlunoId,
@@ -26,15 +54,10 @@ namespace CrudVeiculos.Services
                 AreaTematica = dto.AreaTematica,
                 ArquivoProposta = dto.ArquivoProposta,
                 Periodo = dto.Periodo,
-
                 DataPrevistaDefesa = DateTime.SpecifyKind(dto.DataPrevistaDefesa, DateTimeKind.Utc),
                 Status = dto.Status,
                 DataSubmissao = DateTime.UtcNow,
-
-                DataAprovacao = null,
-
-                Aluno = null!,
-                Orientador = null!
+                DataAprovacao = null!
             };
 
             _context.Tcc.Add(tcc);
@@ -51,8 +74,25 @@ namespace CrudVeiculos.Services
         public async Task<bool> Update(int id, TccCreateDTO dto)
         {
             var tcc = await _context.Tcc.FindAsync(id);
-            if (tcc == null) return false;
+            if (tcc == null)
+                return false;
 
+            // valida existência de aluno
+            if (await _alunoService.GetById(dto.AlunoId) == null)
+                throw new InvalidOperationException($"Aluno {dto.AlunoId} não encontrado.");
+
+            // valida existência de orientador
+            if (await _servidorService.GetById(dto.OrientadorId) == null)
+                throw new InvalidOperationException($"Orientador {dto.OrientadorId} não encontrado.");
+
+            // valida existência de coorientador (se informado)
+            if (dto.CoorientadorId.HasValue
+                && await _servidorService.GetById(dto.CoorientadorId.Value) == null)
+            {
+                throw new InvalidOperationException($"Coorientador {dto.CoorientadorId} não encontrado.");
+            }
+
+            // aplica atualizações
             tcc.AlunoId = dto.AlunoId;
             tcc.OrientadorId = dto.OrientadorId;
             tcc.CoorientadorId = dto.CoorientadorId;
@@ -61,7 +101,6 @@ namespace CrudVeiculos.Services
             tcc.AreaTematica = dto.AreaTematica;
             tcc.ArquivoProposta = dto.ArquivoProposta;
             tcc.Periodo = dto.Periodo;
-
             tcc.DataPrevistaDefesa = DateTime.SpecifyKind(dto.DataPrevistaDefesa, DateTimeKind.Utc);
 
             _context.Tcc.Update(tcc);
