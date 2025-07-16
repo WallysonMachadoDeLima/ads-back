@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using CrudVeiculos.Enums;
+using Ads.Enums;
 
-namespace CrudVeiculos.DTOs
+namespace Ads.DTOs
 {
     public class ServidorCreateDTO
     {

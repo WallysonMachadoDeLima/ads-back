@@ -1,12 +1,16 @@
-using CrudVeiculos.DTOs;
-using CrudVeiculos.Entities;
-using CrudVeiculos.Services;
+// ServidorController.cs
+using Ads.DTOs;
+using Ads.Entities;
+using Ads.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace CrudVeiculos.Controllers
+namespace Ads.Controllers
 {
     [ApiController]
-    [Route("servidor")]
+    [Route("api/servidor")]
     public class ServidorController : ControllerBase
     {
         private readonly ServidorService _servidorService;
@@ -19,32 +23,42 @@ namespace CrudVeiculos.Controllers
         [HttpPost]
         public async Task<ActionResult<Servidor>> Add([FromBody] ServidorCreateDTO dto)
         {
-            var servidor = await _servidorService.Create(dto);
-            return CreatedAtAction(nameof(GetById), new { id = servidor.Id }, servidor);
+            try
+            {
+                var servidor = await _servidorService.Create(dto);
+                return CreatedAtAction(nameof(GetById), new { id = servidor.Id }, servidor);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Servidor>>> GetAll()
-        {
-            return Ok(await _servidorService.GetAll());
-        }
+            => Ok(await _servidorService.GetAll());
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Servidor>> GetById(int id)
         {
             var servidor = await _servidorService.GetById(id);
             if (servidor == null) return NotFound();
-
             return Ok(servidor);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] ServidorUpdateDTO dto)
         {
-            var updated = await _servidorService.Update(id, dto);
-            if (updated == null) return NotFound();
-
-            return Ok(updated);
+            try
+            {
+                var updated = await _servidorService.Update(id, dto);
+                if (updated == null) return NotFound();
+                return Ok(updated);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
@@ -52,7 +66,6 @@ namespace CrudVeiculos.Controllers
         {
             var result = await _servidorService.Delete(id);
             if (!result) return NotFound();
-
             return NoContent();
         }
     }
