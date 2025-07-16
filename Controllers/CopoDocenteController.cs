@@ -1,12 +1,12 @@
-using CrudVeiculos.DTOs;
-using CrudVeiculos.Entities;
-using CrudVeiculos.Services;
+using Ads.DTOs;
+using Ads.Entities;
+using Ads.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CrudVeiculos.Controllers
+namespace Ads.Controllers
 {
     [ApiController]
-    [Route("corpo-docente")]
+    [Route("api/corpo-docente")]
     public class CorpoDocenteController : ControllerBase
     {
         private readonly CorpoDocenteService _corpoDocenteService;
@@ -16,11 +16,19 @@ namespace CrudVeiculos.Controllers
             _corpoDocenteService = corpoDocenteService;
         }
 
+        // 📌 aqui
         [HttpPost]
-        public async Task<ActionResult<CorpoDocente>> Add([FromBody] CorpoDocenteCreateDTO dto)
+        public async Task<IActionResult> Add(CorpoDocenteCreateDTO dto)
         {
-            var corpo = await _corpoDocenteService.Create(dto);
-            return CreatedAtAction(nameof(GetById), new { id = corpo.Id }, corpo);
+            try
+            {
+                var created = await _corpoDocenteService.Create(dto);
+                return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpGet]
@@ -34,27 +42,32 @@ namespace CrudVeiculos.Controllers
         {
             var corpo = await _corpoDocenteService.GetById(id);
             if (corpo == null) return NotFound();
-
             return Ok(corpo);
         }
 
+        // 📌 e aqui
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] CorpoDocenteUpdateDTO dto)
+        public async Task<IActionResult> Update(int id, CorpoDocenteUpdateDTO dto)
         {
-            var result = await _corpoDocenteService.Update(id, dto);
-            if (!result) return NotFound();
-
-            return NoContent();
+            try
+            {
+                var ok = await _corpoDocenteService.Update(id, dto);
+                if (!ok) return NotFound();
+                return NoContent();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
-
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _corpoDocenteService.Delete(id);
             if (!result) return NotFound();
-
             return NoContent();
         }
     }
+
 }

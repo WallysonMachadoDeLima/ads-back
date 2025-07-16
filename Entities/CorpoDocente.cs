@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CrudVeiculos.Entities
+namespace Ads.Entities
 {
   [Table("CorpoDocente")]
   public class CorpoDocente
