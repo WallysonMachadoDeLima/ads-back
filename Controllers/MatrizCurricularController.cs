@@ -1,26 +1,37 @@
-using CrudVeiculos.DTOs;
-using CrudVeiculos.Entities;
-using CrudVeiculos.Services;
+
+using Ads.DTOs;
+using Ads.Entities;
+using Ads.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CrudVeiculos.Controllers
+namespace Ads.Controllers
 {
     [ApiController]
-    [Route("matrizcurricular")]
+    [Route("api/matrizcurricular")]
     public class MatrizCurricularController : ControllerBase
     {
         private readonly MatrizCurricularService _service;
 
         public MatrizCurricularController(MatrizCurricularService service)
-            => _service = service;
+        {
+            _service = service;
+        }
 
         [HttpPost]
         public async Task<ActionResult<MatrizCurricular>> Create([FromBody] MatrizCurricularCreateDTO dto)
         {
-            var matriz = await _service.Create(dto);
-            return CreatedAtAction(nameof(GetById), new { id = matriz.Id }, matriz);
+            try
+            {
+                var matriz = await _service.Create(dto);
+                return CreatedAtAction(nameof(GetById), new { id = matriz.Id }, matriz);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpGet]
@@ -38,9 +49,16 @@ namespace CrudVeiculos.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] MatrizCurricularUpdateDTO dto)
         {
-            var updated = await _service.Update(id, dto);
-            if (updated == null) return NotFound();
-            return Ok(updated);
+            try
+            {
+                var updated = await _service.Update(id, dto);
+                if (updated == null) return NotFound();
+                return Ok(updated);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
@@ -50,6 +68,5 @@ namespace CrudVeiculos.Controllers
             if (!removed) return NotFound();
             return NoContent();
         }
-
     }
 }

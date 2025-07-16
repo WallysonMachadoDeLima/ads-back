@@ -1,12 +1,13 @@
-using CrudVeiculos.Data;
-using CrudVeiculos.DTOs;
-using CrudVeiculos.Entities;
+using Ads.Data;
+using Ads.DTOs;
+using Ads.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CrudVeiculos.Services
+namespace Ads.Services
 {
     public class MatrizCurricularService
     {
@@ -37,6 +38,12 @@ namespace CrudVeiculos.Services
                 .Where(d => dto.DisciplinaIds.Contains(d.Id))
                 .ToListAsync();
 
+            foreach (var id in dto.DisciplinaIds)
+            {
+                if (!disciplinas.Any(d => d.Id == id))
+                    throw new InvalidOperationException($"Disciplina {id} não encontrada.");
+            }
+
             var matriz = new MatrizCurricular
             {
                 Nome = dto.Nome,
@@ -56,15 +63,23 @@ namespace CrudVeiculos.Services
                                        .FirstOrDefaultAsync(m => m.Id == id);
             if (matriz == null) return null;
 
-            matriz.Nome = dto.Nome;
-            matriz.Ano = dto.Ano;
-
-            // atualiza relação: limpa e atribui novamente
             var disciplinas = await _context.Disciplina
                 .Where(d => dto.DisciplinaIds.Contains(d.Id))
                 .ToListAsync();
+
+            foreach (var did in dto.DisciplinaIds)
+            {
+                if (!disciplinas.Any(d => d.Id == did))
+                    throw new InvalidOperationException($"Disciplina {did} não encontrada.");
+            }
+
+            matriz.Nome = dto.Nome;
+            matriz.Ano = dto.Ano;
+
+            // Atualiza o relacionamento
             matriz.Disciplinas.Clear();
-            foreach (var d in disciplinas) matriz.Disciplinas.Add(d);
+            foreach (var d in disciplinas)
+                matriz.Disciplinas.Add(d);
 
             await _context.SaveChangesAsync();
             return matriz;

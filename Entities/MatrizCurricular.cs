@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
-namespace CrudVeiculos.Entities
+namespace Ads.Entities
 {
     [Table("MatrizCurricular")]
     public class MatrizCurricular
