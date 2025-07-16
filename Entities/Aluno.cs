@@ -21,5 +21,13 @@ namespace Ads.Entities
 
         public required string Matricula { get; set; }
 
+        public DateTime DataNascimento { get; set; }
+
+        public required string Sexo { get; set; }
+
+        public required string Periodo { get; set; }
+
+        public required string Situacao { get; set; }
+
     }
 }

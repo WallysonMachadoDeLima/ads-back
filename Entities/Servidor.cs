@@ -22,5 +22,10 @@ namespace Ads.Entities
 
         public required ServidorTipo Tipo { get; set; }
 
+        public required DateTime DataNascimento { get; set; }
+
+        public required string Sexo { get; set; }
+
+        public required string Situacao { get; set; }
     }
 }

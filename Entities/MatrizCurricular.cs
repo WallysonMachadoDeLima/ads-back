@@ -16,5 +16,7 @@ namespace Ads.Entities
 
         public virtual ICollection<Disciplina> Disciplinas { get; set; }
             = new List<Disciplina>();
+
+        public required string Observacao { get; set; }
     }
 }

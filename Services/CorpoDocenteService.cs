@@ -45,7 +45,12 @@ namespace Ads.Services
             var corpo = new CorpoDocente
             {
                 ServidorId = dto.ServidorId,
-                DisciplinaId = dto.DisciplinaId
+                DisciplinaId = dto.DisciplinaId,
+                Turno = dto.Turno,
+                CargaHorariaSemanal = dto.CargaHorariaSemanal,
+                TipoContrato = dto.TipoContrato,
+                Observacoes = dto.Observacoes,
+                Situacao = dto.Situacao
             };
 
             _context.CorpoDocente.Add(corpo);
@@ -85,6 +90,11 @@ namespace Ads.Services
 
             corpo.ServidorId = dto.ServidorId;
             corpo.DisciplinaId = dto.DisciplinaId;
+            corpo.Turno = dto.Turno;
+            corpo.CargaHorariaSemanal = dto.CargaHorariaSemanal;
+            corpo.TipoContrato = dto.TipoContrato;
+            corpo.Observacoes = dto.Observacoes;
+            corpo.Situacao = dto.Situacao;
 
             _context.CorpoDocente.Update(corpo);
             await _context.SaveChangesAsync();

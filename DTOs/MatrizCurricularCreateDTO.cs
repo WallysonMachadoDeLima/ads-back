@@ -14,5 +14,8 @@ namespace Ads.DTOs
         [Required(ErrorMessage = "Informe ao menos uma disciplina")]
         public List<int> DisciplinaIds { get; set; }
             = new List<int>();
+
+        [Required(ErrorMessage = "Observação é obrigatória")]
+        public string Observacao { get; set; }
     }
 }

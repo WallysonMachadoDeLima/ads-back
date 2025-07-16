@@ -48,7 +48,8 @@ namespace Ads.Services
             {
                 Nome = dto.Nome,
                 Ano = dto.Ano,
-                Disciplinas = disciplinas
+                Disciplinas = disciplinas,
+                Observacao = dto.Observacao
             };
 
             _context.MatrizCurricular.Add(matriz);

@@ -41,7 +41,11 @@ namespace Ads.Services
                 Cpf = dto.Cpf,
                 Email = dto.Email,
                 Telefone = dto.Telefone,
-                Matricula = dto.Matricula
+                Matricula = dto.Matricula,
+                DataNascimento = DateTime.SpecifyKind(dto.DataNascimento, DateTimeKind.Utc),
+                Sexo = dto.Sexo,
+                Periodo = dto.Periodo,
+                Situacao = dto.Situacao
             };
 
             _context.Aluno.Add(aluno);
@@ -63,6 +67,10 @@ namespace Ads.Services
             aluno.Email = dto.Email;
             aluno.Telefone = dto.Telefone;
             aluno.Matricula = dto.Matricula;
+            aluno.DataNascimento = DateTime.SpecifyKind(dto.DataNascimento, DateTimeKind.Utc);
+            aluno.Sexo = dto.Sexo;
+            aluno.Periodo = dto.Periodo;
+            aluno.Situacao = dto.Situacao;
 
             await _context.SaveChangesAsync();
             return aluno;

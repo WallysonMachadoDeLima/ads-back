@@ -22,5 +22,18 @@ namespace Ads.DTOs
 
         [Required(ErrorMessage = "Tipo é obrigatório")]
         public required ServidorTipo Tipo { get; set; }
+
+
+        [Required(ErrorMessage = "Data de Nascimento é obrigatória")]
+        [DataType(DataType.Date, ErrorMessage = "Data de Nascimento deve ser uma data válida")]
+        public required DateTime DataNascimento { get; set; }
+
+        [Required(ErrorMessage = "Sexo é obrigatório")]
+        [RegularExpression(@"^(Masculino|Feminino|Outro)$", ErrorMessage = "Sexo deve ser Masculino, Feminino ou Outro")]
+        public required string Sexo { get; set; }
+
+        [Required(ErrorMessage = "Situação é obrigatória")]
+        [RegularExpression(@"^(Ativo|Inativo)$", ErrorMessage = "Situação deve ser Ativo ou Inativo")]
+        public required string Situacao { get; set; }
     }
 }

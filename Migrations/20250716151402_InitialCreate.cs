@@ -22,7 +22,11 @@ namespace Ads.Migrations
                     Cpf = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Telefone = table.Column<string>(type: "text", nullable: false),
-                    Matricula = table.Column<string>(type: "text", nullable: false)
+                    Matricula = table.Column<string>(type: "text", nullable: false),
+                    DataNascimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Sexo = table.Column<string>(type: "text", nullable: false),
+                    Periodo = table.Column<string>(type: "text", nullable: false),
+                    Situacao = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -51,7 +55,8 @@ namespace Ads.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: false),
-                    Ano = table.Column<int>(type: "integer", nullable: false)
+                    Ano = table.Column<int>(type: "integer", nullable: false),
+                    Observacao = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,7 +73,10 @@ namespace Ads.Migrations
                     Cpf = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     Senha = table.Column<string>(type: "text", nullable: false),
-                    Tipo = table.Column<int>(type: "integer", nullable: false)
+                    Tipo = table.Column<int>(type: "integer", nullable: false),
+                    DataNascimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Sexo = table.Column<string>(type: "text", nullable: false),
+                    Situacao = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -148,7 +156,12 @@ namespace Ads.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     DisciplinaId = table.Column<int>(type: "integer", nullable: false),
-                    ServidorId = table.Column<int>(type: "integer", nullable: false)
+                    ServidorId = table.Column<int>(type: "integer", nullable: false),
+                    Turno = table.Column<string>(type: "text", nullable: false),
+                    CargaHorariaSemanal = table.Column<string>(type: "text", nullable: false),
+                    TipoContrato = table.Column<int>(type: "integer", nullable: false),
+                    Observacoes = table.Column<string>(type: "text", nullable: false),
+                    Situacao = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

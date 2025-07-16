@@ -37,7 +37,10 @@ namespace Ads.Services
                 Cpf = dto.Cpf,
                 Email = dto.Email,
                 Senha = dto.Senha,
-                Tipo = dto.Tipo
+                Tipo = dto.Tipo,
+                DataNascimento = DateTime.SpecifyKind(dto.DataNascimento, DateTimeKind.Utc),
+                Sexo = dto.Sexo,
+                Situacao = dto.Situacao
             };
 
             _context.Servidor.Add(servidor);
@@ -59,6 +62,10 @@ namespace Ads.Services
             servidor.Email = dto.Email;
             servidor.Senha = dto.Senha;
             servidor.Tipo = dto.Tipo;
+            servidor.DataNascimento = DateTime.SpecifyKind(dto.DataNascimento, DateTimeKind.Utc);
+            servidor.Sexo = dto.Sexo;
+            servidor.Situacao = dto.Situacao;
+
 
             await _context.SaveChangesAsync();
             return servidor;

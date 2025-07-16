@@ -37,6 +37,9 @@ namespace Ads.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -46,6 +49,18 @@ namespace Ads.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Periodo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Situacao")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -66,11 +81,30 @@ namespace Ads.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CargaHorariaSemanal")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("DisciplinaId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Observacoes")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("ServidorId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Situacao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TipoContrato")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Turno")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -160,6 +194,10 @@ namespace Ads.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Observacao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("MatrizCurricular");
@@ -177,6 +215,9 @@ namespace Ads.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -186,6 +227,14 @@ namespace Ads.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Situacao")
                         .IsRequired()
                         .HasColumnType("text");
 

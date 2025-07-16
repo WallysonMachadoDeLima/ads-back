@@ -18,5 +18,17 @@ namespace Ads.DTOs
 
         [Required(ErrorMessage = "Matrícula é obrigatória")]
         public required string Matricula { get; set; }
+
+        [Required(ErrorMessage = "Data de Nascimento é obrigatória")]
+        public DateTime DataNascimento { get; set; }
+
+        [Required(ErrorMessage = "Sexo é obrigatório")]
+        public required string Sexo { get; set; }
+
+        [Required(ErrorMessage = "Período é obrigatório")]
+        public required string Periodo { get; set; }
+
+        [Required(ErrorMessage = "Situação é obrigatória")]
+        public required string Situacao { get; set; }
     }
 }
