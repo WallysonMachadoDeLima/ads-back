@@ -19,7 +19,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=5000
-      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=veiculos_db;Username=postgres;Password=root
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=ads_db;Username=postgres;Password=root
     depends_on:
       - db
 
