@@ -11,7 +11,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowLocalReact", policy =>
     {
         policy
-            .WithOrigins("http://localhost:3000")
+            .WithOrigins("http://localhost:3001")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -46,7 +46,7 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    context.Database.EnsureDeleted();
+   // context.Database.EnsureDeleted();
     context.Database.Migrate();
 }
 
